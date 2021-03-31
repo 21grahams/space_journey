@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "react-dev": "webpack -d --watch",
     "start": "live-server ./dist",
-    "server": "npx nodemon server/index.js"
+    "server": "nodemon server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,8 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
+    "@material-ui/core": "^4.11.3",
+    "axios": "^0.21.1",
     "babel-loader": "^8.0.6",
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
