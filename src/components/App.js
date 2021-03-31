@@ -35,7 +35,7 @@ class App extends React.Component {
     return (
       <div>
         <Button variant="contained" color="primary" onClick={this.getAllPics}>
-          Lets Go On A Journey!
+          Picture Of The Day!
         </Button>
         <Button className='saved' variant="contained" color="primary" onClick={this.favoritePic}>
           Save To The Collection!

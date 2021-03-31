@@ -21,6 +21,7 @@ button:hover {
   margin-left: auto;
   margin-right: auto;
   width: 90%;
+  border-radius: 25px;
 }
 
 .saved {
@@ -29,9 +30,22 @@ button:hover {
 
 .title {
   border-radius: 10px;
-  text-align: center;
+  font-family: fantasy;
+  background-color: rgb(5, 39, 49);
+  color: skyblue;
+  display: table;
+  margin: 0 auto;
+  font-size: x-large;
 }
 
 .description {
+  padding-top: 10px;
+  border-radius: 10px;
   text-align: center;
+  font-family: fantasy;
+  background-color: rgb(5, 39, 49);
+  color: skyblue;
+  display: table;
+  margin: 0 auto;
+  font-size: x-large;
 }
