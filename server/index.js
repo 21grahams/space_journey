@@ -4,6 +4,7 @@ const port = 3000
 const config = require('../config/config.js')
 const axios = require('axios');
 const path = require('path')
+const db = require('../database/queries.js')
 
 //=====================
 //     Middleware
@@ -15,7 +16,7 @@ app.use(express.static(path.join(__dirname, '..', 'dist')));
 //      Routes
 //=====================
 
-//======get photos==========
+//==========get photos============
 app.get('/photos', (req, res) => {
   axios({method: 'get',
   headers: {'Authorization': config.config},
@@ -26,6 +27,20 @@ app.get('/photos', (req, res) => {
   })
   .catch(err => {
     res.status(err.response.status).send(err.response.data)
+  })
+})
+
+//==========post favorites============
+app.post('/photos', (req, res) => {
+  console.log('req.body: ', req.body)
+  let fullBody = [req.body.url, req.body.title, req.body.description]
+  db.getSpacePictures(fullBody, (err, results) => {
+    if (err) {
+      console.log('ERROR WITH POST REQUEST: ', err)
+      res.status(404).send('FAILED')
+    } else {
+       res.status(201).send('POSTED!')
+    }
   })
 })
 

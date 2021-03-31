@@ -9,24 +9,10 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) {
-    console.log(err);
+    console.log('ERROR WITH DATABASE: ', err);
   } else {
     console.log('Connected to MySQL!')
   }
 });
 
-// Query Get Request
-const getSpacePictures = cb => {
-  connection.query('SELECT * FROM favorites', (err, results) => {
-    if (err) {
-      cb(err, null)
-    } else {
-      cb(null, results)
-    }
-  });
-};
-
-
-module.exports = {
-  getSpacePictures
-};
+module.exports = connection;

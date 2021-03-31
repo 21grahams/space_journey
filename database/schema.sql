@@ -6,6 +6,8 @@ USE dataSpace;
 
 CREATE TABLE IF NOT EXISTS favorites(
   id int NOT NULL AUTO_INCREMENT,
-  url VARCHAR(300),
+  url VARCHAR(50),
+  title VARCHAR(100),
+  description VARCHAR(300),
   PRIMARY KEY(id)
 )

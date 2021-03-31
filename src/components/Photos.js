@@ -3,13 +3,9 @@ import React from "react";
 const Photos = (props) => {
   return (
     <div>
-      <div>
+        <h2 className='title'>{props.title}</h2>
         <img className="image" src={props.link}></img>
-      </div>
-      <div>
-        {props.sentence}
-        {props.description}
-      </div>
+        <p className='description'>{props.description}</p>
     </div>
   );
 };

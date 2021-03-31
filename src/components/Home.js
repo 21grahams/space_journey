@@ -2,26 +2,26 @@ import React from "react";
 import Photos from "./Photos";
 
 const Home = (props) => {
-  const title = [];
+  const titles = [];
   const url = [];
-  const summary = [];
+  const descriptions = [];
 
-  title.push(props.allData.title);
+  titles.push(props.allData.title);
   url.push(props.allData.url);
-  summary.push(props.allData.explanation);
+  descriptions.push(props.allData.explanation);
 
   return (
     <div>
+      {titles.map((title, i) => (
+        <Photos title={title} key={i} />
+      ))}
+
       {url.map((link, i) => (
         <Photos link={link} key={i} />
       ))}
 
-      {title.map((description, i) => (
+      {descriptions.map((description, i) => (
         <Photos description={description} key={i} />
-      ))}
-
-      {summary.map((sentence, i) => (
-        <Photos sentence={sentence} key={i} />
       ))}
     </div>
   );

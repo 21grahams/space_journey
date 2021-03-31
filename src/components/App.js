@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import Home from "./Home";
-import Photos from "./Photos";
 import Button from "@material-ui/core/Button";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class App extends React.Component {
     };
     // bind methods here
     this.getAllPics = this.getAllPics.bind(this);
-    this.sendHome = this.sendHome.bind(this);
+    this.favoritePic = this.favoritePic.bind(this);
   }
   // create methods here
 
@@ -27,7 +27,7 @@ class App extends React.Component {
       .catch((err) => console.log("ERROR ON FRONT: ", err));
   }
 
-  sendHome() {
+  favoritePic() {
     console.log("WORKING!");
   }
 
@@ -35,10 +35,13 @@ class App extends React.Component {
     return (
       <div>
         <Button variant="contained" color="primary" onClick={this.getAllPics}>
-          Ready?
+          Lets Go On A Journey!
         </Button>
+        <Button className='saved' variant="contained" color="primary" onClick={this.favoritePic}>
+          Save To The Collection!
+        </Button>
+        {/* <FavoriteIcon className='heart' color='secondary' fontSize='small'/> */}
         <Home allData={this.state.data} />
-        <Photos />
       </div>
     );
   }
