@@ -16,6 +16,7 @@ class ImageModal extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   // create methods here
   handleChange() {
     this.setState({ [event.target.name]: event.target.value });
@@ -54,9 +55,10 @@ class ImageModal extends React.Component {
   }
 
   render() {
+    const {newUser, ...rest} = this.props
     return (
       <Modal
-        {...this.props}
+        {...rest}
         size="sm"
         aria-labelledby="contained-modal-title-vcenter"
         centered

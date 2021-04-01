@@ -11,11 +11,14 @@ class App extends React.Component {
     this.state = {
       data: [],
       setModalShow: false,
-      };
+      blankDisplay: true,
+      fullDisplay: false,
+    };
     // bind methods here
     this.getAllPics = this.getAllPics.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.newUser = this.newUser.bind(this);
+    this.takeMeHome = this.takeMeHome.bind(this);
   }
   // create methods here
   getAllPics() {
@@ -27,29 +30,50 @@ class App extends React.Component {
         });
       })
       .catch((err) => console.log("ERROR ON FRONT: ", err));
+    this.takeMeHome();
   }
 
   handleModal() {
-    this.setState({ setModalShow: !this.state.setModalShow });
+    this.setState({
+      setModalShow: !this.state.setModalShow,
+    });
   }
 
   newUser(userInfo) {
-      axios.post("/user", userInfo)
-        .then((res) => alert("Thanks for Joining!"))
-        .catch((err) => console.log("ERROR WITH POST REQUEST: ", err));
+    axios
+      .post("/user", userInfo)
+      .then((res) => alert("Thanks for Joining!"))
+      .catch((err) => console.log("ERROR WITH POST REQUEST: ", err));
+  }
+
+  takeMeHome() {
+    this.setState({
+      blankDisplay: !this.state.blankDisplay,
+      fullDisplay: !this.state.fullDisplay,
+    });
   }
 
   render() {
     return (
       <div>
-        <Button
-          className="journeyButton"
-          variant="primary"
-          onClick={this.getAllPics}
-        >
-          Picture Of The Day!
-        </Button>
-        {/* <> */}
+        {this.state.blankDisplay ? (
+          <Button
+            className="journeyButton"
+            variant="primary"
+            onClick={this.getAllPics}
+          >
+            Picture Of The Day!
+          </Button>
+        ) : (
+          <Button
+            className="findMeButton"
+            variant="primary"
+            onClick={this.takeMeHome}
+          >
+            Let's Go Home
+          </Button>
+        )}
+
         <Button
           className="joinUsButton"
           variant="primary"
@@ -63,8 +87,9 @@ class App extends React.Component {
           show={this.state.setModalShow}
           onHide={this.handleModal}
         />
-        {/* </> */}
-        <Home allData={this.state.data} />
+        {this.state.fullDisplay ? (
+          <Home allData={this.state.data} onClick={this.takeMeHome} />
+        ) : null}
       </div>
     );
   }
