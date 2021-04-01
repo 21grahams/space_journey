@@ -1,21 +1,23 @@
 import React from "react";
 import axios from "axios";
 import Home from "./Home";
-import Button from "@material-ui/core/Button";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import { Button, Modal } from "react-bootstrap";
+import ImageModal from "./ImageModal";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
-    };
+      setModalShow: false,
+      };
     // bind methods here
     this.getAllPics = this.getAllPics.bind(this);
-    this.favoritePic = this.favoritePic.bind(this);
+    this.handleModal = this.handleModal.bind(this);
+    this.newUser = this.newUser.bind(this);
   }
   // create methods here
-
   getAllPics() {
     axios
       .get("/photos")
@@ -27,20 +29,41 @@ class App extends React.Component {
       .catch((err) => console.log("ERROR ON FRONT: ", err));
   }
 
-  favoritePic() {
-    console.log("WORKING!");
+  handleModal() {
+    this.setState({ setModalShow: !this.state.setModalShow });
+  }
+
+  newUser(userInfo) {
+      axios.post("/user", userInfo)
+        .then((res) => alert("Thanks for Joining!"))
+        .catch((err) => console.log("ERROR WITH POST REQUEST: ", err));
   }
 
   render() {
     return (
       <div>
-        <Button variant="contained" color="primary" onClick={this.getAllPics}>
+        <Button
+          className="journeyButton"
+          variant="primary"
+          onClick={this.getAllPics}
+        >
           Picture Of The Day!
         </Button>
-        <Button className='saved' variant="contained" color="primary" onClick={this.favoritePic}>
-          Save To The Collection!
+        {/* <> */}
+        <Button
+          className="joinUsButton"
+          variant="primary"
+          onClick={this.handleModal}
+        >
+          Join Us
         </Button>
-        {/* <FavoriteIcon className='heart' color='secondary' fontSize='small'/> */}
+
+        <ImageModal
+          newUser={this.newUser}
+          show={this.state.setModalShow}
+          onHide={this.handleModal}
+        />
+        {/* </> */}
         <Home allData={this.state.data} />
       </div>
     );

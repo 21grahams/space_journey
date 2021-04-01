@@ -10,4 +10,11 @@ CREATE TABLE IF NOT EXISTS favorites(
   title VARCHAR(100),
   description VARCHAR(300),
   PRIMARY KEY(id)
-)
+);
+
+CREATE TABLE IF NOT EXISTS users(
+  id int NOT NULL AUTO_INCREMENT,
+  name VARCHAR(50),
+  email VARCHAR(100),
+  PRIMARY KEY(id)
+);

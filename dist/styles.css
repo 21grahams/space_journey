@@ -1,19 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 body {
-  background: radial-gradient(#1b03f5, #099ef5);
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Righteous', cursive;
+  line-height: 1.7;
+  font-size: 19px;
+  background-image: url("https://i.gifer.com/origin/58/5888d7b2696e39f2be7b972622348632.gif");
 }
 
-button {
-  background-color: #4CAF50;
-  border-radius: 15px;
-  color: white;
+header {
+  height: 25px;
+  background-color: white;
+  color: #099ef5;
+  text-align: center;
+}
+
+
+.logo {
+  font-size: 20px;
+  font-family: fantasy;
+}
+
+
+.journeyButton {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  cursor: pointer;
-  outline: none;
-}
-
-button:hover {
-  opacity: 0.8;
 }
 
 .image {
@@ -24,15 +33,18 @@ button:hover {
   border-radius: 25px;
 }
 
-.saved {
+.joinUsButton {
   float: right;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .title {
+  margin: 50px;
   border-radius: 10px;
   font-family: fantasy;
-  background-color: rgb(5, 39, 49);
-  color: skyblue;
+  color: #d14f4f;
+  font-weight: bold;
+  background-color: black;
   display: table;
   margin: 0 auto;
   font-size: x-large;
@@ -43,9 +55,9 @@ button:hover {
   border-radius: 10px;
   text-align: center;
   font-family: fantasy;
-  background-color: rgb(5, 39, 49);
-  color: skyblue;
+  background-color: black;
+  color: white;
   display: table;
   margin: 0 auto;
-  font-size: x-large;
+  font-size: large;
 }
