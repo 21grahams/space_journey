@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body {
+  font-family: 'Righteous', cursive;
+  line-height: 1.7;
+  font-size: 19px;
+  background-image: url("https://i.gifer.com/origin/58/5888d7b2696e39f2be7b972622348632.gif");
+}
+
+header {
+  height: 25px;
+  background-color: white;
+  color: #099ef5;
+  text-align: center;
+}
+
+.findMeButton {
+  background-color: red;
+}
+
+.logo {
+  font-size: 20px;
+  font-family: fantasy;
+}
+
+
+.journeyButton {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  border-radius: 25px;
+}
+
+.joinUsButton {
+  float: right;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.title {
+  margin: 50px;
+  border-radius: 10px;
+  font-family: fantasy;
+  color: #d14f4f;
+  font-weight: bold;
+  background-color: black;
+  display: table;
+  margin: 0 auto;
+  font-size: x-large;
+}
+
+.description {
+  padding-top: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-family: fantasy;
+  background-color: black;
+  color: white;
+  display: table;
+  margin: 0 auto;
+  font-size: large;
+}
