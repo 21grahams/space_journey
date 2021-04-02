@@ -44,7 +44,7 @@ header {
 .title {
   margin: 50px;
   border-radius: 10px;
-  font-family: fantasy;
+  font-family: 'Righteous';
   color: #d14f4f;
   font-weight: bold;
   background-color: black;
@@ -57,7 +57,7 @@ header {
   padding-top: 10px;
   border-radius: 10px;
   text-align: center;
-  font-family: fantasy;
+  font-family: 'Righteous';
   background-color: black;
   color: white;
   display: table;

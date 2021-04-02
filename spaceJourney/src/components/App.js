@@ -11,8 +11,7 @@ class App extends React.Component {
     this.state = {
       data: [],
       setModalShow: false,
-      blankDisplay: true,
-      fullDisplay: false,
+      blankDisplay: true
     };
     // bind methods here
     this.getAllPics = this.getAllPics.bind(this);
@@ -48,8 +47,7 @@ class App extends React.Component {
 
   takeMeHome() {
     this.setState({
-      blankDisplay: !this.state.blankDisplay,
-      fullDisplay: !this.state.fullDisplay,
+      blankDisplay: !this.state.blankDisplay
     });
   }
 
@@ -87,7 +85,7 @@ class App extends React.Component {
           show={this.state.setModalShow}
           onHide={this.handleModal}
         />
-        {this.state.fullDisplay ? (
+        {!this.state.blankDisplay ? (
           <Home allData={this.state.data} onClick={this.takeMeHome} />
         ) : null}
       </div>
