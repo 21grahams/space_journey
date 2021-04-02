@@ -40,6 +40,8 @@ class ImageModal extends React.Component {
   }
 
   handleSubmit(event) {
+    let nameError = '';
+    let emailError = '';
     event.preventDefault();
     const isValid = this.validate();
     if (isValid) {

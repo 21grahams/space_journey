@@ -22,7 +22,7 @@ app.use(cors())
 app.get('/photos', (req, res) => {
   axios({method: 'get',
   headers: {'Authorization': config.config},
-  url: `https://api.nasa.gov/planetary/apod/?api_key=${config.config}&date=2021-03-22`,
+  url: `https://api.nasa.gov/planetary/apod/?api_key=${config.config}`,
 })
 .then(response => {
     res.status(200).send(response.data)
