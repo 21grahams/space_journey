@@ -38,7 +38,7 @@ app.get("/mars", (req, res) => {
   axios({
     method: "get",
     headers: { Authorization: config.config },
-    url: `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2020-6-3&api_key=${config.config}`,
+    url: `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${config.config}`,
   })
     .then((response) => {
       res.status(200).send(response.data);

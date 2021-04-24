@@ -1,15 +1,15 @@
 import React from 'react';
 import MarsPhotos from './MarsPhotos'
 
-const Home2 = props => {
+const MarsHome = props => {
 
   return (
     <div>
-      {props.marsData.map((picture, i) => (
+      {props.marsData.slice(0, 1).map((picture, i) => (
         <MarsPhotos picture={picture} key={i}/>
       ))}
     </div>
   )
 }
 
-export default Home2;
+export default MarsHome;

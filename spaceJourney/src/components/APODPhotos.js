@@ -1,6 +1,6 @@
 import React from "react";
 
-const Photos = (props) => {
+const APODPhotos = (props) => {
 
   return (
     <div>
@@ -11,4 +11,4 @@ const Photos = (props) => {
   );
 };
 
-export default Photos;
+export default APODPhotos;

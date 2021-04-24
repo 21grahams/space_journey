@@ -1,7 +1,7 @@
 import React from "react";
-import Photos from "./Photos";
+import APODPhotos from "./APODPhotos";
 
-const Home = (props) => {
+const APODHome = (props) => {
   const titles = [];
   const url = [];
   const descriptions = [];
@@ -13,18 +13,18 @@ const Home = (props) => {
   return (
     <div>
       {titles.map((title, i) => (
-        <Photos title={title} key={i} />
+        <APODPhotos title={title} key={i} />
       ))}
 
       {url.map((link, i) => (
-        <Photos link={link} key={i} />
+        <APODPhotos link={link} key={i} />
       ))}
 
       {descriptions.map((description, i) => (
-        <Photos description={description} key={i} />
+        <APODPhotos description={description} key={i} />
       ))}
     </div>
   );
 };
 
-export default Home;
+export default APODHome;

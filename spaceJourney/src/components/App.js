@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Home from "./Home";
-import Home2 from "./Home2";
+import APODHome from "./APODHome";
+import MarsHome from "./MarsHome";
 import { Button, Modal } from "react-bootstrap";
 import ImageModal from "./ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -107,7 +107,7 @@ class App extends React.Component {
             variant="primary"
             onClick={this.marsRover}
           >
-            Mars Rover
+            Mars Rover Pictures
           </Button>
         ) : (
           <Button
@@ -126,12 +126,12 @@ class App extends React.Component {
         />
 
         {!this.state.blankDisplayApod ? (
-          <Home allData={this.state.data} onClick={this.takeMeHomeApod} />
+          <APODHome allData={this.state.data} onClick={this.takeMeHomeApod} />
         ) : null}
 
         {!this.state.blankDisplayMars ? (
           this.state.marsData.photos ? (
-            <Home2 marsData={this.state.marsData.photos} />
+            <MarsHome marsData={this.state.marsData.photos} />
           ) : null
         ) : null}
       </div>
