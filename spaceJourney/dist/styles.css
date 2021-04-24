@@ -14,13 +14,19 @@ header {
   text-align: center;
 }
 
-.findMeButton {
-  background-color: red;
-}
+/* .findMeButton {
+  background-color: #099ef5 !important;
+} */
 
 .logo {
   font-size: 20px;
   font-family: fantasy;
+}
+
+.browseNasaButton {
+  float: right !important;
+  padding-right: 10px !important;
+  margin-right: 10px !important;
 }
 
 
@@ -34,6 +40,7 @@ header {
   margin-right: auto;
   width: 90%;
   border-radius: 25px;
+  padding: 10px;
 }
 
 .joinUsButton {

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Home from "./Home";
+import Home2 from "./Home2";
 import { Button, Modal } from "react-bootstrap";
 import ImageModal from "./ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,15 +11,20 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: [],
+      marsData: [],
       setModalShow: false,
-      blankDisplay: true
+      blankDisplayApod: true,
+      blankDisplayMars: true,
     };
     // bind methods here
     this.getAllPics = this.getAllPics.bind(this);
     this.handleModal = this.handleModal.bind(this);
     this.newUser = this.newUser.bind(this);
-    this.takeMeHome = this.takeMeHome.bind(this);
+    this.takeMeHomeApod = this.takeMeHomeApod.bind(this);
+    this.takeMeHomeMars = this.takeMeHomeMars.bind(this);
+    this.marsRover = this.marsRover.bind(this);
   }
+
   // create methods here
   getAllPics() {
     axios
@@ -29,7 +35,7 @@ class App extends React.Component {
         });
       })
       .catch((err) => console.log("ERROR ON FRONT: ", err));
-    this.takeMeHome();
+    this.takeMeHomeApod();
   }
 
   handleModal() {
@@ -45,16 +51,32 @@ class App extends React.Component {
       .catch((err) => console.log("ERROR WITH POST REQUEST: ", err));
   }
 
-  takeMeHome() {
+  takeMeHomeApod() {
     this.setState({
-      blankDisplay: !this.state.blankDisplay
+      blankDisplayApod: !this.state.blankDisplayApod,
     });
+  }
+
+  takeMeHomeMars() {
+    this.setState({
+      blankDisplayMars: !this.state.blankDisplayMars,
+    });
+  }
+
+  marsRover() {
+    axios
+      .get("/mars")
+      .then((res) => {
+        this.setState({ marsData: res.data });
+      })
+      .catch((err) => console.log("ERROR WITH POST REQUEST: ", err));
+    this.takeMeHomeMars();
   }
 
   render() {
     return (
       <div>
-        {this.state.blankDisplay ? (
+        {this.state.blankDisplayApod ? (
           <Button
             className="journeyButton"
             variant="primary"
@@ -65,13 +87,12 @@ class App extends React.Component {
         ) : (
           <Button
             className="findMeButton"
-            variant="primary"
-            onClick={this.takeMeHome}
+            variant="dark"
+            onClick={this.takeMeHomeApod}
           >
             Let's Go Home
           </Button>
         )}
-
         <Button
           className="joinUsButton"
           variant="primary"
@@ -80,13 +101,38 @@ class App extends React.Component {
           Join Us
         </Button>
 
+        {this.state.blankDisplayMars ? (
+          <Button
+            className="browseNasaButton"
+            variant="primary"
+            onClick={this.marsRover}
+          >
+            Mars Rover
+          </Button>
+        ) : (
+          <Button
+            className="browseNasaButton"
+            variant="dark"
+            onClick={this.takeMeHomeMars}
+          >
+            Let's Go Home
+          </Button>
+        )}
+
         <ImageModal
           newUser={this.newUser}
           show={this.state.setModalShow}
           onHide={this.handleModal}
         />
-        {!this.state.blankDisplay ? (
-          <Home allData={this.state.data} onClick={this.takeMeHome} />
+
+        {!this.state.blankDisplayApod ? (
+          <Home allData={this.state.data} onClick={this.takeMeHomeApod} />
+        ) : null}
+
+        {!this.state.blankDisplayMars ? (
+          this.state.marsData.photos ? (
+            <Home2 marsData={this.state.marsData.photos} />
+          ) : null
         ) : null}
       </div>
     );

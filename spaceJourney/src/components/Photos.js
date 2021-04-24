@@ -1,6 +1,7 @@
 import React from "react";
 
 const Photos = (props) => {
+
   return (
     <div>
         <span className='title'>{props.title}</span>

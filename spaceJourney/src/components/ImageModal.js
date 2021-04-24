@@ -95,7 +95,7 @@ class ImageModal extends React.Component {
           <Button onClick={this.handleSubmit}>
             Submit
           </Button>
-          <Button onClick={this.props.onHide}>Close</Button>
+          <Button variant="secondary" onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     );
