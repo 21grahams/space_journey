@@ -15,6 +15,7 @@ class ImageModal extends React.Component {
     // bind methods
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   // create methods here
@@ -56,6 +57,16 @@ class ImageModal extends React.Component {
     }
   }
 
+  reset() {
+    this.props.onHide();
+    this.setState({
+      name: '',
+      email: '',
+      nameError: '',
+      emailError: ''
+    })
+  }
+
   render() {
     const {newUser, ...rest} = this.props
     return (
@@ -64,6 +75,7 @@ class ImageModal extends React.Component {
         size="sm"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        backdrop='static'
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -95,7 +107,7 @@ class ImageModal extends React.Component {
           <Button onClick={this.handleSubmit}>
             Submit
           </Button>
-          <Button variant="secondary" onClick={this.props.onHide}>Close</Button>
+          <Button variant="secondary" onClick={this.reset}>Close</Button>
         </Modal.Footer>
       </Modal>
     );
