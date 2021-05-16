@@ -77,7 +77,7 @@ class ImageModal extends React.Component {
         centered
         backdrop='static'
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
             Sign Up To Receive Daily NASA Pictures
           </Modal.Title>
