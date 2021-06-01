@@ -9,7 +9,29 @@ Let us help! With a simple click, you'll get the highest quality and brand new p
 ## Quotes
 "Who are we? We find that we live on an insignificant planet of a humdrum star lost in a galaxy tucked away in some forgotten corner of a universe in which there are far more galaxies than people." - Carl Sagan
 ## How to Get Started
-Clone the repository, run an 'npm install' then a 'run start dev' and you're ready to start exploring.
+Fork and clone spaceJourney repository to your preferred directory:
+
+```bash
+$ git clone https://github.com/21grahams/space_journey.git
+```
+
+Open the project and install the dependencies included in the package.json:
+
+```bash
+$ npm install
+```
+
+Initialize webpack:
+
+```bash
+$ npm run react-dev
+```
+
+Run the nodemon server and you're ready to start exploring:
+```bash
+$ npm run server
+```
+
 ## Customer Quote
 "Houston, we have lift off." -Jack Swigert
 ## Closing and Call to Action
