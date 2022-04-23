@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import APODHome from "./APODHome";
 import MarsHome from "./MarsHome";
@@ -6,137 +6,103 @@ import { Button, Modal } from "react-bootstrap";
 import ImageModal from "./ImageModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      marsData: [],
-      setModalShow: false,
-      blankDisplayApod: true,
-      blankDisplayMars: true,
-    };
-    // bind methods here
-    this.getAllPics = this.getAllPics.bind(this);
-    this.handleModal = this.handleModal.bind(this);
-    this.newUser = this.newUser.bind(this);
-    this.takeMeHomeApod = this.takeMeHomeApod.bind(this);
-    this.takeMeHomeMars = this.takeMeHomeMars.bind(this);
-    this.marsRover = this.marsRover.bind(this);
-  }
+const App = () => {
+  const [data, setData] = useState([]);
+  const [marsData, setMarsData] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [blankDisplayApod, setBlankDisplayApod] = useState(true);
+  const [blankDisplayMars, setBlankDisplayMars] = useState(true);
 
   // create methods here
-  getAllPics() {
+  const getAllPics = () => {
     axios
       .get("/photos")
-      .then((res) => {
-        this.setState({
-          data: res.data,
-        });
-      })
-      .catch((err) => console.log("ERROR ON FRONT: ", err));
-    this.takeMeHomeApod();
-  }
+      .then((res) => setData(res.data))
+      .catch((err) => console.log("Error with NASA photo: ", err));
+    takeMeHomeApod();
+  };
 
-  handleModal() {
-    this.setState({
-      setModalShow: !this.state.setModalShow,
-    });
-  }
+  const handleModal = () => {
+    setModalShow(!modalShow);
+  };
 
-  newUser(userInfo) {
+  const newUser = (userInfo) => {
     axios
       .post("/user", userInfo)
       .then((res) => alert("Thanks for Joining!"))
-      .catch((err) => console.log("ERROR WITH POST REQUEST: ", err));
-  }
+      .catch((err) => console.log("Error with Post Request: ", err));
+  };
 
-  takeMeHomeApod() {
-    this.setState({
-      blankDisplayApod: !this.state.blankDisplayApod,
-    });
-  }
+  const takeMeHomeApod = () => {
+    setBlankDisplayApod(!blankDisplayApod);
+  };
 
-  takeMeHomeMars() {
-    this.setState({
-      blankDisplayMars: !this.state.blankDisplayMars,
-    });
-  }
+  const takeMeHomeMars = () => {
+    setBlankDisplayMars(!blankDisplayMars);
+  };
 
-  marsRover() {
+  const marsRover = () => {
     axios
       .get("/mars")
-      .then((res) => {
-        this.setState({ marsData: res.data });
-      })
-      .catch((err) => console.log("ERROR WITH POST REQUEST: ", err));
-    this.takeMeHomeMars();
-  }
+      .then((res) => setMarsData(res.data))
+      .catch((err) => console.log("Error with Mars Data Request: ", err));
+    takeMeHomeMars();
+  };
 
-  render() {
-    return (
-      <div>
-        {this.state.blankDisplayApod ? (
-          <Button
-            className="journeyButton"
-            variant="primary"
-            onClick={this.getAllPics}
-          >
-            Picture Of The Day!
-          </Button>
-        ) : (
-          <Button
-            className="findMeButton"
-            variant="dark"
-            onClick={this.takeMeHomeApod}
-          >
-            Let's Go Home
-          </Button>
-        )}
+  return (
+    <div>
+      {blankDisplayApod ? (
         <Button
-          className="joinUsButton"
+          className="journeyButton"
           variant="primary"
-          onClick={this.handleModal}
+          onClick={getAllPics}
         >
-          Join Us
+          Picture Of The Day!
         </Button>
+      ) : (
+        <Button
+          className="findMeButton"
+          variant="dark"
+          onClick={takeMeHomeApod}
+        >
+          Let's Go Home
+        </Button>
+      )}
+      <Button className="joinUsButton" variant="primary" onClick={handleModal}>
+        Join Us
+      </Button>
 
-        {this.state.blankDisplayMars ? (
-          <Button
-            className="browseNasaButton"
-            variant="primary"
-            onClick={this.marsRover}
-          >
-            Mars Rover Pictures
-          </Button>
-        ) : (
-          <Button
-            className="browseNasaButton"
-            variant="dark"
-            onClick={this.takeMeHomeMars}
-          >
-            Let's Go Home
-          </Button>
-        )}
+      {blankDisplayMars ? (
+        <Button
+          className="browseNasaButton"
+          variant="primary"
+          onClick={marsRover}
+        >
+          Mars Rover Pictures
+        </Button>
+      ) : (
+        <Button
+          className="browseNasaButton"
+          variant="dark"
+          onClick={takeMeHomeMars}
+        >
+          Let's Go Home
+        </Button>
+      )}
 
-        <ImageModal
-          newUser={this.newUser}
-          show={this.state.setModalShow}
-          onHide={this.handleModal}
-        />
+      <ImageModal newUser={newUser} show={modalShow} onHide={handleModal} />
 
-        {!this.state.blankDisplayApod ? (
-          <APODHome allData={this.state.data} onClick={this.takeMeHomeApod} />
-        ) : null}
+      {!blankDisplayApod ? (
+        <APODHome allData={data} onClick={takeMeHomeApod} />
+      ) : null}
 
-        {!this.state.blankDisplayMars ? (
-          this.state.marsData.photos ? (
-            <MarsHome marsData={this.state.marsData.photos} />
-          ) : null
-        ) : null}
-      </div>
-    );
-  }
-}
+      {!blankDisplayMars ? (
+        marsData.photos ? (
+          <MarsHome marsData={marsData.photos} />
+        ) : null
+      ) : null}
+    </div>
+  );
+};
 
 export default App;

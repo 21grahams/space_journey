@@ -22,14 +22,13 @@ app.use(cors());
 app.get("/photos", (req, res) => {
   axios({
     method: "get",
-    headers: { Authorization: config.config },
     url: `https://api.nasa.gov/planetary/apod/?api_key=${config.config}`,
   })
     .then((response) => {
-      res.status(200).send(response.data);
+      res.send(response.data);
     })
     .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
+      res.status(401).send(err);
     });
 });
 
@@ -37,14 +36,13 @@ app.get("/photos", (req, res) => {
 app.get("/mars", (req, res) => {
   axios({
     method: "get",
-    headers: { Authorization: config.config },
     url: `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${config.config}`,
   })
     .then((response) => {
-      res.status(200).send(response.data);
+      res.send(response.data);
     })
     .catch((err) => {
-      res.status(err.response.status).send(err.response.data);
+      res.status(401).send(err);
     });
 });
 
